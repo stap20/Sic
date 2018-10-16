@@ -1,17 +1,15 @@
 #include <iostream>
 #include<bits/stdc++.h>
-#include"scan.h"
+#include"hex_inc.h"
 using namespace std;
+
 
 int main()
 {
    string file_path;
-   cin>>file_path;
-  // Scan(file_path);
-           int hex1,hex2;
-
-    cin>>hex >>hex1;
-    cin>>hex >>hex2;
-    cout<<hex <<hex1+hex2<<endl;
+   int number;
+   string Location="0048";
+   cout<<_String_Hex_INC_X(Location,3);
    return 0;
 }
+

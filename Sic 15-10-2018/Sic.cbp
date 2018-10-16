@@ -32,7 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="hex_inc.cpp" />
+		<Unit filename="hex_inc.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="scan.cpp" />
+		<Unit filename="scan.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
