@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1539595866 source:d:\user\aast\desktop\sic\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+	"scan.h"
+
+1539592663 d:\user\aast\desktop\sic\scan.h
+	<bits/stdc++.h>
+
+1539595752 source:d:\user\aast\desktop\sic\scan.cpp
+	<bits/stdc++.h>
+	<fstream>
+	"scan.h"
+
