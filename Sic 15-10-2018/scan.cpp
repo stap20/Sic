@@ -32,16 +32,7 @@ void Scan(string File_Path)
 {
     if(file_valid(File_Path))
     {
-    ifstream file_used;
-    string current_line;
-    file_used.open(File_Path.c_str());
-    while (getline(file_used, current_line))
-        {
-          if(find_text(current_line,"START"))
-          cout<<current_line<<endl;
-        }
-       // hex_my++;
-       // cout<<hex_my<<endl;
+       cout<<"hi";
         }
 
     else
