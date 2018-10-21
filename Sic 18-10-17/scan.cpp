@@ -38,7 +38,7 @@ void _Store_DATA(string Current_Str,int location)
                 Table[current_location].Label_Location=Prog_Loc_Counter;
                 current_location++;
             }
-         else if ((location==1||location==2)&&_Check_If_DECLERATION(Current_Str)==NOT_FOUND)
+         else if ((location==1||location==2))
          {
                 Labels.push_back(Current_Str);
          }
@@ -92,9 +92,29 @@ void Pass_ONE(string File_Path)
 byte->inc 1
 resw->inc (3*rakam aly ba3daha)
 resb->inc (1*)*/
+string _Get_Label_LOC(string Label)
+{
+    for(int i=0;i<Table.size();i++)
+    {
+        if(Label==Table[i].Label)
+            return Table[i].Label_Location;
+    }
+    return NOT_FOUND;
+}
 void test()
 {
-   for(int i=0;i<Instruction.size();i++)
-    cout<<i<<"                 "<<Instruction[i]<<"           "<<Prog_Loc_Counter_Array[i]<<endl;
+   for(int i=0;i<Labels.size();i++)
+   {
+       string temp;
+       temp = _Get_Label_LOC(Labels[i]);
+       if(i<Instruction.size())
+            cout<<i<<"                 "<<_Instruction_Found_Get_INST(Instruction[i])<<"           "<<Labels[i]<<endl;
+        else
+          cout<<i<<"                              "<<Labels[i]<<endl;
+   }
+   cout<<"-----------------------------------"<<endl;
+   for(int i=0;i<Table.size();i++)
+        cout<<i<<"                 "<<Table[i].Label<<"           "<<Table[i].Label_Location<<endl;
+
 }
 
