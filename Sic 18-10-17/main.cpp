@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-//#include "scan.h"
+#include "scan.h"
 using namespace std;
 int main()
 {

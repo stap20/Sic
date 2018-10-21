@@ -12,6 +12,7 @@ void _Current_Line_Divide_Strings_BYREF(string current_line,string *current_line
     {
         for(j=k;current_line[j]!=' '&&j<current_line.size();j++)
         {
+            if(current_line[j]!=',')
             current_line_divided[i]+=current_line[j];
         }
         k=j+1;

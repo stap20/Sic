@@ -1,19 +1,29 @@
 #include"hex_inc.h"
 int _Hex_Char_To_INT(char conv);
 char _Hex_Int_To_CHAR(int conv);
-int _String_To_INT(string String);
+int _Hex_String_To_INT(string String);
 string _Int_To_Hex_STR(int Hex_Number_In_INT,int Old_String_SIZE);
+int _Str_To_INT(string String);
 
-string _String_Hex_INC_X(string Location,string OFFSET)// OFFSET is a number we must add on hex to get another location
+string _String_Hex_INC_X(string Location,string OFFSET,string Dec_OFFSET)// OFFSET is a number we must add on hex to get another location
 {
    reverse(Location.begin(),Location.end()); //Reverse String Because We read Hex From Right To Left like 003c c when read array have weight 3 in hex have 0
    reverse(OFFSET.begin(),OFFSET.end()); //Reverse String Because We read Hex From Right To Left like 003c c when read array have weight 3 in hex have 0
-   int Hex_After_Inc_X_INT_Value=_String_To_INT(Location)+_String_To_INT(OFFSET);
+   reverse(Dec_OFFSET.begin(),Dec_OFFSET.end());
+   int Hex_After_Inc_X_INT_Value=_Hex_String_To_INT(Location)+(_Hex_String_To_INT(OFFSET)*_Str_To_INT(Dec_OFFSET)) ;
    string Hex_Num_After_CONV=_Int_To_Hex_STR(Hex_After_Inc_X_INT_Value,Location.size());
 
    return Hex_Num_After_CONV;
 }
 
+int _Str_To_INT(string String)
+{
+    double sum=0;
+    for(int i=0;i<String.size();i++){
+        sum+=((String[i]-'0')*pow(10,i));
+    }
+   return sum;
+}
 
 int _Hex_Char_To_INT(char conv)
 {
@@ -52,7 +62,7 @@ char _Hex_Int_To_CHAR(int conv)
 
 
 
-int _String_To_INT(string String)
+int _Hex_String_To_INT(string String)
 {
     int sum=0;
     for(int i=0;i<String.size();i++){
