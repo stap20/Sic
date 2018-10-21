@@ -1,7 +1,7 @@
 #include "Chek_if_Dec.H"
 using namespace std;
 const string Dec [4]={"WORD","BYTE","RESW","RESB"};
-string _Check_If_DEC(string current_string)
+string _Check_If_DECLERATION(string current_string)
 {
     for(int i=0;i<4;i++)
     if(current_string==Dec[2])

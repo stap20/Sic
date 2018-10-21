@@ -92,7 +92,7 @@
 1539908500 c:\users\a_l_s_o\desktop\sic 18-10-17\currentline_divide_strings.h
 	<string>
 
-1539912032 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\currentline_divide_strings.cpp
+1540147115 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\currentline_divide_strings.cpp
 	"currentline_divide_strings.h"
 
 1540144104 c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\currentline_divide_strings.h
@@ -112,10 +112,10 @@
 1539853402 c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\instruction_find.h
 	<string>
 
-1540147056 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\scan.cpp
+1540148391 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\scan.cpp
 	"scan.h"
 
-1540143067 c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\scan.h
+1540149116 c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\scan.h
 	<iostream>
 	<fstream>
 	<string>
@@ -129,9 +129,9 @@
 	<bits/stdc++.h>
 	"scan.h"
 
-1540143587 c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\chek_if_dec.h
+1540150299 c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\chek_if_dec.h
 	"instruction_find.h"
 
-1540143587 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\chek_if_dec.cpp
+1540150299 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-17\chek_if_dec.cpp
 	"Chek_if_Dec.H"
 
