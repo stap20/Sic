@@ -138,7 +138,7 @@ void Pass_TWO(string File_Path)
        File_Write<<"-------------------------------------------------------------------------------------------"<<endl;
        File_Write<<"			   ------------------------"<<endl;
 
-        for(int i=0;i<Labels.size();i++)
+        for(int i=0;i<Labels.size()-1;i++) // 34an ma5od4 ma3aya al location bata3 end
         {
             File_Write<<"			  |"<<Prog_Loc_Counter_Array[i];
             if(_Check_If_DECLERATION(Labels[i])!=RESB&&_Check_If_DECLERATION(Labels[i])!=RESW)
@@ -167,7 +167,7 @@ void Pass_TWO(string File_Path)
 
             else
                 File_Write<<"                     |"<<endl;
-            if(i<Labels.size()-1)
+            if(i<Labels.size()-2)
             File_Write<<"                          |-------------------------|"<<endl;
         }
 
@@ -175,7 +175,7 @@ void Pass_TWO(string File_Path)
         File_Write<<"==========================================================================================="<<endl;
         File_Write<<"                                      HTE"<<endl;
         File_Write<<"-------------------------------------------------------------------------------------------"<<endl;
-        File_Write<<"                                     Head"<<endl;
+        File_Write<<"                                     Header"<<endl;
         File_Write<<"			    ----------------------"<<endl;
 
         ///Head

@@ -420,7 +420,7 @@
 1540247111 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\instruction_find.cpp
 	"instruction_find.h"
 
-1540255535 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.cpp
+1540256602 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.cpp
 	"scan.h"
 
 1540250944 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.h
@@ -441,4 +441,8 @@
 
 1540253974 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\string _to_opcode_fit_8.cpp
 	"String _To_Opcode_Fit_8.h"
+
+1540256383 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\main.cpp
+	<bits/stdc++.h>
+	"scan.h"
 
