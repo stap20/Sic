@@ -34,6 +34,10 @@
 		</Compiler>
 		<Unit filename="Chek_if_Dec.H" />
 		<Unit filename="Chek_if_Dec.cpp" />
+		<Unit filename="Obj_Code_Fix_Exced_6.cpp" />
+		<Unit filename="Obj_Code_Fix_Exced_6.h" />
+		<Unit filename="Prog_Length.cpp" />
+		<Unit filename="Prog_Length.h" />
 		<Unit filename="String _To_Opcode_Fit_8.cpp" />
 		<Unit filename="String _To_Opcode_Fit_8.h" />
 		<Unit filename="currentline_divide_strings.cpp" />

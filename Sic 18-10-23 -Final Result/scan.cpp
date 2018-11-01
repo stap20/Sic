@@ -5,7 +5,7 @@ string Current_Line_Without_Spac[4]; //this array store line without spacing lik
 vector<string> Labels;
 vector<string> Instruction;
 vector<string> Prog_Loc_Counter_Array;
-vector<string> Op_Code_For_Hte;
+vector<string> Ob_Code_For_Hte;
 int line_counter=0; //number of line in program
 string startposition;
 int current_location=0;
@@ -41,10 +41,15 @@ void _Store_DATA(string Current_Str,int location)
                 Table[current_location].Label_Location=Prog_Loc_Counter;
                 current_location++;
             }
-         else if ((location==1||location==2))
+         else if ((location==1||location==2)&&_Check_If_DECLERATION(Current_Str)!=RESB&&_Check_If_DECLERATION(Current_Str)!=RESW)
          {
                 Labels.push_back(Current_Str);
          }
+         else if((location==1||location==2)&&(_Check_If_DECLERATION(Current_Str)==RESB||_Check_If_DECLERATION(Current_Str)==RESW))
+          {
+              Labels.push_back(RESB);
+              Instruction.push_back("-1");
+          }
     }
     else
         {
@@ -52,6 +57,7 @@ void _Store_DATA(string Current_Str,int location)
         }
 }
 
+///Pass One
 void Pass_ONE(string File_Path)
 {
     if(IsFile_Found(File_Path))
@@ -62,7 +68,7 @@ void Pass_ONE(string File_Path)
        File_Read.open(File_Path.c_str());
         while (getline(File_Read, Current_Line)) // Here We Take Line In File and put it in Current_Line
         {
-            _Current_Line_Divide_Strings_BYREF(Current_Line,Current_Line_Without_Spac);
+             _Current_Line_Divide_Strings_BYREF(Current_Line,Current_Line_Without_Spac);
             if(Current_Line_Without_Spac[1]=="START")
            {
             Start_Prog_Flag=true;
@@ -86,6 +92,8 @@ void Pass_ONE(string File_Path)
                         i++;
                     }
                 }
+                if(Current_Line_Without_Spac[1]=="")
+                    Labels.push_back("");
                   Prog_Loc_Counter_Array.push_back(Prog_Loc_Counter);
                   if(_Check_If_DECLERATION(Current_Line_Without_Spac[1])==RESB)
                         Prog_Loc_Counter=_String_Hex_INC_X(Prog_Loc_Counter,HEX_ONE,Current_Line_Without_Spac[2]/*This Offset After resb*/);
@@ -111,11 +119,12 @@ string _Get_Label_LOC(string Label)
     return NOT_FOUND;
 }
 
-
+///Pass Two
 void Pass_TWO(string File_Path)
 {
     if(IsFile_Found(File_Path))
     {
+        int current_Ob_For_Hte=0;// because we set -1 if it resb or resw
        ofstream File_Write;
        string Current_Opcode="";
        File_Write.open(File_Path.c_str());
@@ -141,36 +150,87 @@ void Pass_TWO(string File_Path)
         for(int i=0;i<Labels.size()-1;i++) // 34an ma5od4 ma3aya al location bata3 end
         {
             File_Write<<"			  |"<<Prog_Loc_Counter_Array[i];
-            if(_Check_If_DECLERATION(Labels[i])!=RESB&&_Check_If_DECLERATION(Labels[i])!=RESW)
+           if(Labels[i]=="") //RSUB OBJ Code Handle
             {
+                string current_obj_code;
+                string instruction_as_op=_Instruction_Found_Get_INST(Instruction[i]);
+                reverse(instruction_as_op.begin(),instruction_as_op.end());
+                current_obj_code=String_To_Opcode_Change_Size_TO_X(instruction_as_op,6,'0');
+                reverse(current_obj_code.begin(),current_obj_code.end());
+                Ob_Code_For_Hte.push_back(current_obj_code);
+                    File_Write<<"               "<<current_obj_code<<"|"<<endl;
+                    current_Ob_For_Hte++;
+            }
+
+          else if(_Check_If_DECLERATION(Labels[i])!=RESB&&_Check_If_DECLERATION(Labels[i])!=RESW)
+            {
+                 ///Indirect Addressing
                   if(Labels[i][Labels[i].size()-1]=='x'||Labels[i][Labels[i].size()-1]=='X')
                   {
-                      Op_Code_For_Hte.push_back(_Instruction_Found_Get_INST(Instruction[i])+_Hex_Indirect_CHANGER(_Get_Label_LOC(Labels[i].substr(0, Labels[i].size()- 1))));
+                      Ob_Code_For_Hte.push_back(_Instruction_Found_Get_INST(Instruction[i])+_Hex_Indirect_CHANGER(_Get_Label_LOC(Labels[i].substr(0, Labels[i].size()- 1))));
                     File_Write<<"               "<<_Instruction_Found_Get_INST(Instruction[i])+_Hex_Indirect_CHANGER(_Get_Label_LOC(Labels[i].substr(0, Labels[i].size()- 1)/* here we remove last char x*/))<<"|"<<endl; // if it word we store value in hex now we fit it in 6 digit
+                    current_Ob_For_Hte++;
                   }
                   else if(_Check_If_DECLERATION(Labels[i])==WORD)
                   {
-                      Op_Code_For_Hte.push_back(String_To_Opcode_Change_Size_TO_X(Instruction[i],6,'0'));
+                      Ob_Code_For_Hte.push_back(String_To_Opcode_Change_Size_TO_X(Instruction[i],6,'0'));
                     File_Write<<"               "<<String_To_Opcode_Change_Size_TO_X(Instruction[i],6,'0')<<"|"<<endl; // if it word we store value in hex now we fit it in 6 digit
+                    current_Ob_For_Hte++;
                   }
+
+                  ///Byte
                    else if(_Check_If_DECLERATION(Labels[i])==BYTE)
                    {
-                       Op_Code_For_Hte.push_back(Instruction[i]);
-                       File_Write<<"               "<<Instruction[i]<<endl; // if it byte we store value in hex now we only display it
+                       string current_ob_code=Instruction[i];
+                       if(current_ob_code.size()>6)
+                       {
+                       vector<string> current_ob_code_for_hte;
+                       Object_Code_Fix_Exced_6(current_ob_code_for_hte,current_ob_code);
+                       for(int j=0;j<current_ob_code_for_hte.size();j++)
+                       {
+                       Ob_Code_For_Hte.push_back(current_ob_code_for_hte[j]);
+                       current_Ob_For_Hte++;
+                        if(j>=1)
+                        {
+                            reverse(current_ob_code_for_hte[j].begin(),current_ob_code_for_hte[j].end());
+                            current_ob_code_for_hte[j]=String_To_Opcode_Change_Size_TO_X(current_ob_code_for_hte[j],6,' ');
+                            reverse(current_ob_code_for_hte[j].begin(),current_ob_code_for_hte[j].end());
+                            File_Write<<"                          |                   "<<current_ob_code_for_hte[j]<<"|"<<endl;
+                        }
+                         else
+                       File_Write<<"               "<<current_ob_code_for_hte[j]<<"|"<<endl;
+                        if(j<current_ob_code_for_hte.size()-1)
+                        File_Write<<"                          |-------------------------|"<<endl;
+                       }
+                       }
+                       else
+                       {
+                        Ob_Code_For_Hte.push_back(current_ob_code);
+                       File_Write<<"               "<<current_ob_code<<"|"<<endl; // if it byte we store value in hex now we only display it
+                       current_Ob_For_Hte++;
+                       }
                    }
-                   else
+
+                   ///Label
+                   else if(Instruction[i]!="-1")
                    {
-                       Op_Code_For_Hte.push_back(_Instruction_Found_Get_INST(Instruction[i])+_Get_Label_LOC(Labels[i]));
+                        Ob_Code_For_Hte.push_back(_Instruction_Found_Get_INST(Instruction[i])+_Get_Label_LOC(Labels[i]));
                        File_Write<<"               "<<_Instruction_Found_Get_INST(Instruction[i])+_Get_Label_LOC(Labels[i])<<"|"<<endl; //normal op code
+                       current_Ob_For_Hte++;
                    }
             }
-
+            else if(_Check_If_DECLERATION(Labels[i])==RESB||_Check_If_DECLERATION(Labels[i])==RESW)
+                    {
+                      Ob_Code_For_Hte.push_back("-1"); // handle if( we have resb or resw in middle)
+            File_Write<<"                     |"<<endl;
+                    }
             else
                 File_Write<<"                     |"<<endl;
             if(i<Labels.size()-2)
             File_Write<<"                          |-------------------------|"<<endl;
         }
 
+        Ob_Code_For_Hte.push_back("0"); //for end
         File_Write<<"                           -------------------------"<<endl;
         File_Write<<"==========================================================================================="<<endl;
         File_Write<<"                                      HTE"<<endl;
@@ -189,17 +249,33 @@ void Pass_TWO(string File_Path)
 
         ///Text
         File_Write<<"                 ==============================================="<<endl;
-        File_Write<<"                                     Text"<<endl;
-        File_Write<<"			    ----------------------"<<endl;
-        File_Write<<" ---------------------------------------------------------------------------------------"<<endl;
+       int i=0,last=0,sum_bits=0,j=0;
+        vector <string> current_prog_length;  //store all program lengths in this vector
+         Prog_Length_Calc(Ob_Code_For_Hte,Prog_Loc_Counter_Array,current_prog_length);
+         for( i=0;i<current_prog_length.size();i++)
+         {
+             cout<<"A"<<current_prog_length[i]<<endl;
+                    ///Text
+                    File_Write<<"                                     Text : "<<i+1<<endl;
+                    File_Write<<"			    ----------------------"<<endl;
+                    File_Write<<" ---------------------------------------------------------------------------------------"<<endl;
+                    File_Write<<"|T^"<<String_To_Opcode_Change_Size_TO_X(Prog_Loc_Counter_Array[0],6,'0');
+                    File_Write<<"^"<<current_prog_length[i];
 
-        File_Write<<"|T^"<<String_To_Opcode_Change_Size_TO_X(Prog_Loc_Counter_Array[0],6,'0')<<"^"<<String_To_Opcode_Change_Size_TO_X(Prog_Loc_Counter_Array[0],6,'0');
-        File_Write<<"^"<<String_Decrease_SIZE(_String_Hex_DEC_X(Prog_Loc_Counter_Array[Prog_Loc_Counter_Array.size()-2],Prog_Loc_Counter_Array[0]),'0');
-        for(int i=0;i<Op_Code_For_Hte.size();i++)
-          File_Write<<"^"<<Op_Code_For_Hte[i];
-          File_Write<<endl;
-        File_Write<<" ---------------------------------------------------------------------------------------"<<endl;
+                     for( j=last;(sum_bits+Ob_Code_For_Hte[j].size())<=60&&Ob_Code_For_Hte[j]!="-1"&&j<=Ob_Code_For_Hte.size();j++)
+                        {
+                            File_Write<<"^"<<Ob_Code_For_Hte[j];
+                            sum_bits+=Ob_Code_For_Hte[j].size();
+                        }
+                     if(Ob_Code_For_Hte[j]=="-1")
+                            j++;
 
+                    sum_bits=0;
+                    last=j;
+
+                    File_Write<<endl;
+                    File_Write<<" ---------------------------------------------------------------------------------------"<<endl;
+         }
         ///End
         File_Write<<"==========================================================================================="<<endl;
         File_Write<<"                                      END"<<endl;
@@ -211,52 +287,6 @@ void Pass_TWO(string File_Path)
 
    }
 }
-   /*
-   for(int i=0;i<Labels.size();i++)
-   {
-                string temp = _Get_Label_LOC(Labels[itest]);
-                if(Current_Line_Without_Spac[1]=="RESW" || Current_Line_Without_Spac[1]=="RESB")
-                opcode="";
-                if(Current_Line_Without_Spac[0]=="RSUB")
-                opcode="4C0000";
-                else if(_Instruction_Found_Get_INST(Current_Line_Without_Spac[0]) != NOT_FOUND)     //If instruction is in 1st
-                opcode= _Instruction_Found_Get_INST(Current_Line_Without_Spac[0]) + temp;           //place of array, NO LABEL.
-                else if (_Instruction_Found_Get_INST(Current_Line_Without_Spac[1]) != NOT_FOUND)    //If instruction is after
-                opcode= _Instruction_Found_Get_INST(Current_Line_Without_Spac[1]) + temp;           //after a label.
-   }
-
-
-       cout<<"H" <<"^"<<Prog_Name <<"^0"<<startposition<<"^"<<Prog_Loc_Counter;
-       cout<<"\n"<<"T"<<"^";
-       cout<<"\n"<<"E"<<"^"<<startposition;
-
-   }
-
-}
-*/
-
-
-
-/*
-void test2()
-{
-
-    for(int i=0;i<Labels.size();i++)
-   {
-       string temp;
-       temp = _Get_Label_LOC(Labels[i]);
-       if(i<Instruction.size())
-            cout<<i<<"\t\t"<<current_location <<"\t"<<Labels[i][Labels[i].size()-1]<<"\t"
-            <<_Instruction_Found_Get_INST(Instruction[i])<<"\t"<<Labels[i]<<"\t"<<temp<<endl;
-        else
-          cout<<i<<"                              "<<Labels[i]<<endl;
-   }
-   cout<<"\n---------------Symbol Table----------------"<<endl;
-   for(int i=0;i<Table.size();i++)
-        cout<<i<<"                 "<<Table[i].Label<<"           "<<Table[i].Label_Location<<endl;
-
-
-}*/
 void test()
 {
    for(int i=0;i<Labels.size();i++)
@@ -266,13 +296,13 @@ void test()
        if(i<Instruction.size())
        {
            if(_Instruction_Found_Get_INST(Instruction[i])!=NOT_FOUND)
-                       cout<<Prog_Loc_Counter_Array[i]<<"                 "<<_Instruction_Found_Get_INST(Instruction[i])<<"           "<<Labels[i]<<endl;
+                       cout<<i<<"             "<<Prog_Loc_Counter_Array[i]<<"                    "<<"         "<<Instruction[i]<<"           "<<Labels[i]<<endl;
            else
-                                   cout<<Prog_Loc_Counter_Array[i]<<"                 "<<Instruction[i]<<"           "<<Labels[i]<<endl;
+                       cout<<i<<"             "<<Prog_Loc_Counter_Array[i]<<"                    "<<"         "<<Instruction[i]<<"           "<<Labels[i]<<endl;
 
        }
         else
-          cout<<Prog_Loc_Counter_Array[i]<<"                              "<<Labels[i]<<endl;
+          cout<<i<<"             "<<Prog_Loc_Counter_Array[i]<<"                    "<<"                     "<<Labels[i]<<endl;
    }
    cout<<"-----------------------------------"<<endl;
    for(int i=0;i<Table.size();i++)

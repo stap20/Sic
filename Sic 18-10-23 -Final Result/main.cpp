@@ -7,13 +7,12 @@ using namespace std;
 
 int main()
 {
-   string file_path="in_2.txt";
+   string file_path="in.txt";
    string file_output="out.txt";
     Pass_ONE(file_path);
     Pass_TWO(file_output);
-   //test();
+    test();
     //test2();
-
-   return 0;
+    return 0;
 }
 

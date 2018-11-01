@@ -1,5 +1,6 @@
 #include "hex_inc_dec.h"
 #include<string>
+#include<iostream>
 #ifndef STRING_TO_OPCODE_FIT_8_H
 #define STRING_TO_OPCODE_FIT_8_H
 using namespace std;

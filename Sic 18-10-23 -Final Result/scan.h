@@ -7,7 +7,9 @@
 #include "String _To_Opcode_Fit_8.h"
 #include"currentline_divide_strings.h"
 #include "hex_indirect_addressing_changer.h"
+#include "Obj_Code_Fix_Exced_6.h"
 #include "Chek_if_Dec.H"
+#include "Prog_Length.h"
 using namespace std;
 #ifndef SCAN_H_DEF
 #define SCAN_H_DEF

@@ -417,13 +417,13 @@
 	<string>
 	"hex_inc_dec.h"
 
-1540247111 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\instruction_find.cpp
+1540469546 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\instruction_find.cpp
 	"instruction_find.h"
 
-1540256602 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.cpp
+1540646217 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.cpp
 	"scan.h"
 
-1540250944 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.h
+1540640784 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.h
 	<iostream>
 	<fstream>
 	<string>
@@ -433,16 +433,36 @@
 	"String _To_Opcode_Fit_8.h"
 	"currentline_divide_strings.h"
 	"hex_indirect_addressing_changer.h"
+	"Obj_Code_Fix_Exced_6.h"
 	"Chek_if_Dec.H"
+	"Prog_Length.h"
 
-1540253954 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\string _to_opcode_fit_8.h
+1540467609 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\string _to_opcode_fit_8.h
 	"hex_inc_dec.h"
 	<string>
+	<iostream>
 
-1540253974 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\string _to_opcode_fit_8.cpp
+1540467729 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\string _to_opcode_fit_8.cpp
 	"String _To_Opcode_Fit_8.h"
 
-1540256383 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\main.cpp
+1540642249 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\main.cpp
 	<bits/stdc++.h>
 	"scan.h"
+
+1540461108 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\obj_code_fix_exced_6.cpp
+	"Obj_Code_Fix_Exced_6.h"
+
+1540461015 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\obj_code_fix_exced_6.h
+	<string>
+	<vector>
+
+1540641244 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\prog_length.h
+	<string>
+	<vector>
+	"hex_inc_dec.h"
+	"String _To_Opcode_Fit_8.h"
+	<iostream>
+
+1540646067 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\prog_length.cpp
+	"Prog_Length.h"
 
