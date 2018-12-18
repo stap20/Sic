@@ -390,11 +390,18 @@
 1540247076 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\chek_if_dec.cpp
 	"Chek_if_Dec.H"
 
-1540217184 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\chek_if_dec.h
-	"instruction_find.h"
-
-1540217184 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\instruction_find.h
+1543392363 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\chek_if_dec.h
 	<string>
+
+1543408431 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\instruction_find.h
+	<string>
+	<iostream>
+	<cmath>
+	<vector>
+	<sstream>
+	"Chek_if_Dec.H"
+	"hex_inc_dec.h"
+	"String _To_Opcode_Fit_8.h"
 
 1540217186 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\currentline_divide_strings.cpp
 	"currentline_divide_strings.h"
@@ -402,11 +409,12 @@
 1540217186 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\currentline_divide_strings.h
 	<string>
 
-1540251658 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\hex_inc_dec.cpp
+1543431485 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\hex_inc_dec.cpp
 	"hex_inc_dec.h"
 
-1540250944 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\hex_inc_dec.h
+1543430495 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\hex_inc_dec.h
 	<string>
+	<iostream>
 	<algorithm>
 	<math.h>
 
@@ -417,16 +425,17 @@
 	<string>
 	"hex_inc_dec.h"
 
-1540469546 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\instruction_find.cpp
+1543421370 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\instruction_find.cpp
 	"instruction_find.h"
 
-1540646217 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.cpp
+1543494411 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.cpp
 	"scan.h"
 
-1540640784 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.h
+1543417924 c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\scan.h
 	<iostream>
 	<fstream>
 	<string>
+	<algorithm>
 	<vector>
 	"hex_inc_dec.h"
 	"instruction_find.h"
@@ -445,9 +454,10 @@
 1540467729 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\string _to_opcode_fit_8.cpp
 	"String _To_Opcode_Fit_8.h"
 
-1540642249 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\main.cpp
+1543492928 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\main.cpp
 	<bits/stdc++.h>
 	"scan.h"
+	"hex_inc_dec.h"
 
 1540461108 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\obj_code_fix_exced_6.cpp
 	"Obj_Code_Fix_Exced_6.h"
@@ -463,6 +473,6 @@
 	"String _To_Opcode_Fit_8.h"
 	<iostream>
 
-1540646067 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\prog_length.cpp
+1540646374 source:c:\users\a_l_s_o\desktop\sic project\sic 18-10-23 -final result\prog_length.cpp
 	"Prog_Length.h"
 

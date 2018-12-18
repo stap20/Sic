@@ -12,7 +12,6 @@ string _String_Hex_INC_X(string Location,string OFFSET,string DecL_OFFSET)// OFF
    reverse(DecL_OFFSET.begin(),DecL_OFFSET.end());
    int Hex_After_Inc_X_INT_Value=_Hex_String_To_INT(Location)+(_Hex_String_To_INT(OFFSET)*_Str_To_INT(DecL_OFFSET)) ;
    string Hex_Num_After_CONV=_Int_To_Hex_STR(Hex_After_Inc_X_INT_Value,Location.size());
-
    return Hex_Num_After_CONV;
 }
 
@@ -25,7 +24,15 @@ string _String_Hex_DEC_X(string HEX_1,string HEX_2)
 
    return Hex_Num_After_CONV;
 }
-
+bool is_number(string test_str)
+{
+    for(int i=0;i<test_str.size();i++)
+       {
+        if(test_str[i]!='0'&&test_str[i]!='1'&&test_str[i]!='2'&&test_str[i]!='3'&&test_str[i]!='4'&&test_str[i]!='5'&&test_str[i]!='6'&&test_str[i]!='7'&&test_str[i]!='8'&&test_str[i]!='9')
+            return false;
+       }
+    return true;
+}
 int _Str_To_INT(string String)
 {
     double sum=0;
@@ -86,11 +93,14 @@ int _Hex_String_To_INT(string String)
 string _Int_To_Hex_STR(int Hex_Number_In_INT,int Old_String_SIZE)
 {
    string String="";
+   bool last_char=false;
    int Hex_Reminder_From_DIV;
    for(int i=Old_String_SIZE-1;i>=0;i--)
    {
-    if(Hex_Number_In_INT<=15)    //To Handel If We Find Reminder Included In Hex
+    if(Hex_Number_In_INT<=15&&i==0)    //To Handel If We Find Reminder Included In Hex
+    {
         String+=_Hex_Int_To_CHAR(Hex_Number_In_INT);
+    }
     else if(Hex_Number_In_INT>=pow(16,i))      //If Else We must Find Power<=Sum
         {
         Hex_Reminder_From_DIV = Hex_Number_In_INT/pow(16,i);

@@ -1,6 +1,7 @@
 #include<iostream>
 #include <fstream>
 #include <string>
+#include<algorithm>
 #include<vector>
 #include"hex_inc_dec.h"
 #include"instruction_find.h"
@@ -13,8 +14,6 @@
 using namespace std;
 #ifndef SCAN_H_DEF
 #define SCAN_H_DEF
-const string HEX_THREE ="0003";
-const string HEX_ONE ="0001";
 void Pass_ONE(string File_Path);
 void Pass_TWO(string File_Path);
 void test();
